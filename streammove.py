@@ -60,7 +60,7 @@ if company_name:
     # دریافت داده‌های قیمتی شرکت
     if company_name in Mrepo.index:
         df = Moving(Mrepo, company_name, mnum=movnum)
-        df = df.dropna(axis = 0)
+    
         st.write(df)
         # رسم نمودار
         fig, ax = plt.subplots(figsize=(20, 10))
