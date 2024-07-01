@@ -26,6 +26,7 @@ else:
 
 
 
+Mrepo = Mrepo.set_index(Mrepo['نماد'])
 
 def farsito_finglish(text):
     mapping = {
@@ -46,7 +47,6 @@ def Moving(dfkol , nemad, mnum):
     df[f"EMA{mnum}"] = df[nemad2].ewm(span=mnum).mean()
     return df
 
-st.write(Mrepo)
 # تنظیم عنوان اپلیکیشن
 st.title('نمایش داده‌های قیمتی شرکت')
 
