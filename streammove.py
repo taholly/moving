@@ -45,7 +45,7 @@ def Moving(dfkol , nemad, mnum):
     return df
 
 # تنظیم عنوان اپلیکیشن
-st.title('نمایش داده‌های قیمتی شرکت')
+st.title('Monthly Sale data')
 
 # گرفتن نام شرکت و بازه میانگین از کاربر
 company_name = st.text_input('نام شرکت را وارد کنید:')
@@ -63,10 +63,10 @@ if company_name:
         st.write(df)
         # رسم نمودار
         fig, ax = plt.subplots(figsize=(20, 10))
-        ax.plot(df[farsito_finglish(company_name)], label=f'{company_name} Price')  # 'r-' به معنی خط قرمز است
+        ax.plot(df[farsito_finglish(company_name)], label=f'{farsito_finglish(company_name)}')  # 'r-' به معنی خط قرمز است
         ax.plot(df[f"EMA{movnum}"], label=f'EMA {movnum}')  # 'b--' به معنی خط آبی نقطه‌چین است
         ax.legend()
-        ax.set_title(f'Sale {company_name}')
+        ax.set_title(f'Sale {farsito_finglish(company_name)}')
         ax.set_xlabel('Date')
         ax.set_ylabel('Salw')
         ax.grid(True)
