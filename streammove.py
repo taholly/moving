@@ -41,7 +41,7 @@ def Moving(dfkol , nemad, mnum):
     df = dfkol[nemad].to_frame()
     nemad2 = farsito_finglish(nemad)
     df = df.rename(columns={nemad:nemad2})
-    df[f"EMA{mnum}"] = df[nemad2].rolling(mnum).mean()
+    df[f"EMA{mnum}"] = df[nemad2].ewm(span = mnum).mean()
     return df
 
 # تنظیم عنوان اپلیکیشن
@@ -66,10 +66,9 @@ if company_name:
         fig, ax = plt.subplots(figsize=(20, 10))
         ax.plot(df[farsito_finglish(company_name)], label=f'{farsito_finglish(company_name)}')  # 'r-' به معنی خط قرمز است
         ax.plot(df[f"SMA{movnum}"], label=f'EMA {movnum}')  # 'b--' به معنی خط آبی نقطه‌چین است
-        ax.legend()
         ax.set_title(f'Sale {farsito_finglish(company_name)}')
         ax.set_xlabel('Date')
-        ax.set_ylabel('Salw')
+        ax.set_ylabel('Sale')
         ax.grid(True)
         ax.legend()
         # نمایش نمودار با Streamlit
