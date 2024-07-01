@@ -28,9 +28,19 @@ import streamlit as st
 
 
 # In[8]:
+import requests
+from io import BytesIO
 
+# URL فایل اکسل در گیت‌هاب
+url = 'https://github.com/taholly/moving/tree/main/Mreports.xlsx'
 
-Mrepo = pd.read_excel("Mreports.xlsx" , index_col='نماد')
+# دریافت فایل اکسل
+response = requests.get(url)
+file = BytesIO(response.content)
+
+# خواندن داده‌ها از فایل اکس
+
+Mrepo = pd.read_excel(file , index_col='نماد')
 
 
 # In[9]:
