@@ -108,7 +108,7 @@ if company_name:
     # نمایش داده‌ها
     #st.write(df)
 
-    fig, ax = plt.subplots(figsize=(36,20))  # تنظیم اندازه فیگر
+    fig, ax = plt.subplots(figsize=(20,10))  # تنظیم اندازه فیگر
 
     ax.plot(df[farsito_finglish(company_name)])  # 'r-' به معنی خط قرمز است
     ax.plot(df[f"EMA{movnum}"] )  # 'b--' به معنی خط آبی نقطه‌چین است# رسم نمودار
