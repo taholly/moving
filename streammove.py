@@ -11,7 +11,7 @@ response = requests.get(url)
 if response.status_code == 200:
     file = BytesIO(response.content)
     try:
-        Mrepo = pd.read_excel(file, engine='openpyxl')
+        Mrepo = pd.read_excel(file, engine='openpyxl', index_col="نماد")
         print(Mrepo.head())  # چاپ چند ردیف اول برای بررسی
     except Exception as e:
         print(f"Error reading the Excel file: {e}")
