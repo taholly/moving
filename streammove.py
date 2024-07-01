@@ -4,9 +4,6 @@ from io import BytesIO
 import streamlit as st
 import matplotlib.pyplot as plt
 
-import pandas as pd
-import requests
-from io import BytesIO
 
 url = 'https://raw.githubusercontent.com/taholly/moving/main/Mreports.xlsx'
 response = requests.get(url)
@@ -26,7 +23,7 @@ else:
 
 
 
-Mrepo = Mrepo.set_index(Mrepo['نماد'])
+#Mrepo = Mrepo.set_index(Mrepo['نماد'])
 
 def farsito_finglish(text):
     mapping = {
