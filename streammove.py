@@ -1,26 +1,19 @@
-import pandas as pd
 import requests
 from io import BytesIO
-import streamlit as st
-import matplotlib.pyplot as plt
 
-# URL فایل اکسل در گیت‌هاب
 url = 'https://raw.githubusercontent.com/taholly/moving/main/Mreports.xlsx'
+response = requests.get(url)
 
-try:
-    # دریافت فایل اکسل
-    response = requests.get(url)
-    response.raise_for_status()  # بررسی خطاهای درخواست
+if response.status_code == 200:
     file = BytesIO(response.content)
-    
-    # خواندن داده‌ها از فایل اکسل
-    Mrepo = pd.read_excel(file)
-    Mrepo = Mrepo.set_index(Mrepo['نماد'])
-except Exception as e:
-    st.error(f"Error loading data: {e}")
-    st.stop()  # متوقف کردن اجرای برنامه در صورت بروز خطا
+    try:
+        Mrepo = pd.read_excel(file)
+        print(Mrepo.head())  # چاپ چند ردیف اول برای بررسی
+    except Exception as e:
+        print(f"Error reading the Excel file: {e}")
+else:
+    print(f"Failed to retrieve file: {response.status_code}")
 
-# ادامه کد...
 
 
 def farsito_finglish(text):
@@ -42,6 +35,7 @@ def Moving(dfkol , nemad, mnum):
     df[f"EMA{mnum}"] = df[nemad2].ewm(span=mnum).mean()
     return df
 
+st.write(Mrepo)
 # تنظیم عنوان اپلیکیشن
 st.title('نمایش داده‌های قیمتی شرکت')
 
