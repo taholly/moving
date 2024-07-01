@@ -40,7 +40,9 @@ file = BytesIO(response.content)
 
 # خواندن داده‌ها از فایل اکس
 
-Mrepo = pd.read_excel(file , index_col='نماد')
+Mrepo = pd.read_excel(file)
+Mrepo = Mrepo.set_index(Mrepo['نماد'])
+
 
 
 # In[9]:
