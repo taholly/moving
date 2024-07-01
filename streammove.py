@@ -1,23 +1,27 @@
-#!/usr/bin/env python
-# coding: utf-8
-
 import pandas as pd
-import matplotlib.pyplot as plt
-import numpy as np
-import streamlit as st
 import requests
 from io import BytesIO
+import streamlit as st
+import matplotlib.pyplot as plt
 
-# URL فایل اکسل در گیت‌هاب (URL مستقیم)
+# URL فایل اکسل در گیت‌هاب
 url = 'https://raw.githubusercontent.com/taholly/moving/main/Mreports.xlsx'
 
-# دریافت فایل اکسل
-response = requests.get(url)
-file = BytesIO(response.content)
+try:
+    # دریافت فایل اکسل
+    response = requests.get(url)
+    response.raise_for_status()  # بررسی خطاهای درخواست
+    file = BytesIO(response.content)
+    
+    # خواندن داده‌ها از فایل اکسل
+    Mrepo = pd.read_excel(file)
+    Mrepo = Mrepo.set_index(Mrepo['نماد'])
+except Exception as e:
+    st.error(f"Error loading data: {e}")
+    st.stop()  # متوقف کردن اجرای برنامه در صورت بروز خطا
 
-# خواندن داده‌ها از فایل اکسل
-Mrepo = pd.read_excel(file)
-Mrepo = Mrepo.set_index(Mrepo['نماد'])
+# ادامه کد...
+
 
 def farsito_finglish(text):
     mapping = {
