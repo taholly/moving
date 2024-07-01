@@ -60,17 +60,17 @@ if company_name:
     # دریافت داده‌های قیمتی شرکت
     if company_name in Mrepo.index:
         df = Moving(Mrepo, company_name, mnum=movnum)
-        
+        st.write(df)
         # رسم نمودار
         fig, ax = plt.subplots(figsize=(20, 10))
         ax.plot(df[farsito_finglish(company_name)], label=f'{company_name} Price')  # 'r-' به معنی خط قرمز است
         ax.plot(df[f"EMA{movnum}"], label=f'EMA {movnum}')  # 'b--' به معنی خط آبی نقطه‌چین است
         ax.legend()
-        ax.set_title(f'نمودار قیمتی {company_name}')
-        ax.set_xlabel('تاریخ')
-        ax.set_ylabel('قیمت')
+        ax.set_title(f'Sale {company_name}')
+        ax.set_xlabel('Date')
+        ax.set_ylabel('Salw')
         ax.grid(True)
-        
+        ax.legend()
         # نمایش نمودار با Streamlit
         st.pyplot(fig)
     else:
