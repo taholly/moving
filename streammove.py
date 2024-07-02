@@ -63,7 +63,7 @@ if company_name:
     
         st.write(df)
         # رسم نمودار
-        fig, ax = plt.subplots(figsize=(20, 10))
+        fig, ax = plt.subplots(figsize=(26, 10))
         ax.plot(df[farsito_finglish(company_name)], label=f'{farsito_finglish(company_name)}')  # 'r-' به معنی خط قرمز است
         ax.plot(df[f"SMA{movnum}"], label=f'SMA {movnum}')  # 'b--' به معنی خط آبی نقطه‌چین است
         ax.set_title(f'Sale {farsito_finglish(company_name)}')
@@ -75,3 +75,5 @@ if company_name:
         st.pyplot(fig)
     else:
         st.error(f'شرکت "{company_name}" در داده‌ها یافت نشد.')
+st.write("produce by Taha SadeghiZadeh")
+st.write("Artin Asset Management")
