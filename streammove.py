@@ -75,5 +75,5 @@ if company_name:
         st.pyplot(fig)
     else:
         st.error(f'شرکت "{company_name}" در داده‌ها یافت نشد.')
-st.write("produce by Taha SadeghiZadeh")
+st.write("Produce By Taha SadeghiZadeh")
 st.write("Artin Asset Management")
