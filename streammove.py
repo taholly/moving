@@ -39,9 +39,8 @@ def farsito_finglish(text):
 def Moving(dfkol , nemad, mnum):
     dfkol = dfkol.T.ffill().bfill()
     df = dfkol[nemad].to_frame()
-    nemad2 = farsito_finglish(nemad)
-    df = df.rename(columns={nemad:nemad2})
-    df[f"SMA{mnum}"] = df[nemad2].rolling(mnum).mean()
+    #df = df.rename(columns={nemad:nemad2})
+    df[f"SMA{mnum}"] = df[nemad].rolling(mnum).mean()
     return df
 
 # تنظیم عنوان اپلیکیشن
@@ -64,9 +63,9 @@ if company_name:
         st.write(df)
         # رسم نمودار
         fig, ax = plt.subplots(figsize=(26, 10))
-        ax.plot(df[farsito_finglish(company_name)], label=f'{farsito_finglish(company_name)}')  # 'r-' به معنی خط قرمز است
-        ax.plot(df[f"SMA{movnum}"], label=f'SMA {movnum}')  # 'b--' به معنی خط آبی نقطه‌چین است
-        ax.set_title(f'Sale {farsito_finglish(company_name)}')
+        ax.plot(df[company_name], label='Company' , "r")  # 'r-' به معنی خط قرمز است
+        ax.plot(df[f"SMA{movnum}"], label=f'SMA {movnum}' , "g-")  # 'b--' به معنی خط آبی نقطه‌چین است
+        ax.set_title("Monthly Sale Data")
         ax.set_xlabel('Date')
         ax.set_ylabel('Sale')
         ax.grid(True)
