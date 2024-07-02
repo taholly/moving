@@ -76,4 +76,4 @@ if company_name:
         st.error(f'شرکت "{company_name}" در داده‌ها یافت نشد.')
 st.markdown("[1^]Produce By Taha SadeghiZadeh")
 st.markdown("[1]Artin Asset Management")
-st.markdown("""[^1]: This is the footnote content. It can include more detailed explanations or additional information.""")
+st.markdown("[^1]: This is the footnote content. It can include more detailed explanations or additional information.")
