@@ -63,8 +63,8 @@ if company_name:
         st.write(df)
         # رسم نمودار
         fig, ax = plt.subplots(figsize=(26, 10))
-        ax.plot(df[company_name], label='Company' , colour = "r-")  # 'r-' به معنی خط قرمز است
-        ax.plot(df[f"SMA{movnum}"], label=f'SMA {movnum}' , colour = "g-")  # 'b--' به معنی خط آبی نقطه‌چین است
+        ax.plot(df[company_name], label='Company')  
+        ax.plot(df[f"SMA{movnum}"], label=f'SMA {movnum}' ) 
         ax.set_title("Monthly Sale Data")
         ax.set_xlabel('Date')
         ax.set_ylabel('Sale')
