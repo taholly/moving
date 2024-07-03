@@ -62,7 +62,7 @@ if company_name:
         m, n = df.shape
         for i in range(m): 
             for j in range(n):
-                if isinstance(df.iloc[i, j], float):  # بررسی نوع داده و تبدیل به صحیح در صورت اعشاری بودن
+                if df.iloc[i, j]:  # بررسی نوع داده و تبدیل به صحیح در صورت اعشاری بودن
                     df.iloc[i, j] = int(df.iloc[i, j])
         # استایل‌دهی DataFrame - بلد کردن اعداد
         styled_df = df.style.applymap(lambda x: 'font-weight: bold; text-align: center;' if isinstance(x, (int, float,str)) else '')
