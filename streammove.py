@@ -3,7 +3,6 @@ import requests
 from io import BytesIO
 import streamlit as st
 import plotly.graph_objects as go
-import plotly.express as px
 
 # دریافت داده‌ها
 url = 'https://raw.githubusercontent.com/taholly/moving/main/Mreports.xlsx'
@@ -15,7 +14,7 @@ if response.status_code == 200:
         # بارگذاری داده‌ها به DataFrame
         Mrepo = pd.read_excel(file, engine='openpyxl', index_col="نماد")
         st.write("Dataframe loaded successfully:")
-        #st.write(Mrepo.head())  # نمایش چند ردیف اول
+        st.write(Mrepo.head())  # نمایش چند ردیف اول
     except Exception as e:
         st.error(f"Error reading the Excel file: {e}")
 else:
@@ -27,6 +26,12 @@ def Moving(dfkol , nemad, mnum):
     df = dfkol[nemad].to_frame()
     df[f"SMA{mnum}"] = df[nemad].rolling(mnum).mean()
     return df
+
+def calculate_percentage_difference(df):
+    # محاسبه اختلاف درصدی بین آخرین مقدار و میانگین
+    last_row = df.iloc[-1]
+    percentage_diff = (last_row - df.mean()) / df.mean() * 100
+    return percentage_diff.abs()
 
 # تنظیم عنوان اپلیکیشن
 st.title('Monthly Sale Data')
@@ -45,7 +50,17 @@ if company_name:
     # دریافت داده‌های قیمتی شرکت
     if company_name in Mrepo.index:
         df = Moving(Mrepo, company_name, mnum=movnum)
-        st.write(df)
+        
+        # محاسبه اختلاف درصدی
+        percentage_diff = calculate_percentage_difference(df)
+        
+        # پیدا کردن نمادهایی با بیشترین اختلاف درصدی
+        top_diff_symbols = percentage_diff.sort_values(ascending=False).head(10)
+        
+        # نمایش پنجره با نمادهای با بیشترین اختلاف درصدی
+        st.subheader('نمادهایی با بیشترین اختلاف درصدی از میانگین:')
+        st.dataframe(top_diff_symbols)
+        
         # رسم نمودار با استفاده از Plotly
         fig = go.Figure()
         
