@@ -66,7 +66,7 @@ if company_name:
     if company_name in Mrepo.index:
         df = Moving(Mrepo, company_name, mnum=movnum)
         
-        df = df.applymap(convert_to_int)
+        #df = df.applymap(convert_to_int)
         # استایل‌دهی DataFrame - بلد کردن اعداد
         styled_df = df.style.applymap(lambda x: 'font-weight: bold; text-align: center;' if isinstance(x, (int, float,str)) else '')
         
