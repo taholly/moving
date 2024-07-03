@@ -59,10 +59,11 @@ if company_name:
     # دریافت داده‌های قیمتی شرکت
     if company_name in Mrepo.index:
         df = Moving(Mrepo, company_name, mnum=movnum)
-        m , n = df.shape
+        m, n = df.shape
         for i in range(m): 
             for j in range(n):
-                df.iloc[i,j] = int(df.iloc[i,j])
+                if isinstance(df.iloc[i, j], float):  # بررسی نوع داده و تبدیل به صحیح در صورت اعشاری بودن
+                    df.iloc[i, j] = int(df.iloc[i, j])
         # استایل‌دهی DataFrame - بلد کردن اعداد
         styled_df = df.style.applymap(lambda x: 'font-weight: bold; text-align: center;' if isinstance(x, (int, float,str)) else '')
         
