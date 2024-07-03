@@ -60,8 +60,8 @@ if company_name:
     if company_name in Mrepo.index:
         df = Moving(Mrepo, company_name, mnum=movnum)
         m , n = df.shape
-        for i in m: 
-            for j in n:
+        for i in range(m): 
+            for j in range(n):
                 df.iloc[i,j] = int(df.iloc[i,j])
         # استایل‌دهی DataFrame - بلد کردن اعداد
         styled_df = df.style.applymap(lambda x: 'font-weight: bold; text-align: center;' if isinstance(x, (int, float,str)) else '')
