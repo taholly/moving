@@ -14,7 +14,7 @@ if response.status_code == 200:
         # بارگذاری داده‌ها به DataFrame
         Mrepo = pd.read_excel(file, engine='openpyxl', index_col="نماد")
         st.write("Dataframe loaded successfully:")
-        st.write(Mrepo.head())  # نمایش چند ردیف اول
+        #st.write(Mrepo.head())  # نمایش چند ردیف اول
     except Exception as e:
         st.error(f"Error reading the Excel file: {e}")
 else:
