@@ -69,7 +69,7 @@ if company_name:
         # استایل‌دهی DataFrame - بلد کردن اعداد
         styled_df = df.style.applymap(lambda x: 'font-weight: bold; text-align: center;' if isinstance(x, (int, float,str)) else '')
         
-        st.dataframe(styled_df, use_container_width=True)
+        st.write(styled_df)
         # رسم نمودار
         fig, ax = plt.subplots(figsize=(26, 10))
         ax.plot(df[company_name], label='Company')  
