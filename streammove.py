@@ -59,8 +59,11 @@ if company_name:
     # دریافت داده‌های قیمتی شرکت
     if company_name in Mrepo.index:
         df = Moving(Mrepo, company_name, mnum=movnum)
-    
-        st.write(df)
+        df = df.astype(int)
+        # استایل‌دهی DataFrame - بلد کردن اعداد
+        styled_df = df.style.applymap(lambda x: 'font-weight: bold; text-align: center;' if isinstance(x, (int, float,str)) else '')
+        
+        st.dataframe(styled_df, use_container_width=True)
         # رسم نمودار
         fig, ax = plt.subplots(figsize=(26, 10))
         ax.plot(df[company_name], label='Company')  
