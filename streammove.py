@@ -22,7 +22,8 @@ else:
 # تبدیل اعداد اعشاری به صحیح
 def convert_to_int(x):
     if isinstance(x, float):
-        return int(x)
+        if x != None:
+            x =  int(x)
     return x
 
 
