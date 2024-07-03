@@ -19,7 +19,12 @@ else:
     print(f"Failed to retrieve file: {response.status_code}")
 
 
-# ادامه کد...
+# تبدیل اعداد اعشاری به صحیح
+def convert_to_int(x):
+    if isinstance(x, float):
+        return int(x)
+    return x
+
 
 
 
@@ -59,11 +64,8 @@ if company_name:
     # دریافت داده‌های قیمتی شرکت
     if company_name in Mrepo.index:
         df = Moving(Mrepo, company_name, mnum=movnum)
-        m, n = df.shape
-        for i in range(m): 
-            for j in range(n):
-                if df.iloc[i, j]:  # بررسی نوع داده و تبدیل به صحیح در صورت اعشاری بودن
-                    df.iloc[i, j] = int(df.iloc[i, j])
+        
+        df = df.applymap(convert_to_int)
         # استایل‌دهی DataFrame - بلد کردن اعداد
         styled_df = df.style.applymap(lambda x: 'font-weight: bold; text-align: center;' if isinstance(x, (int, float,str)) else '')
         
