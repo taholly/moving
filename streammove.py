@@ -45,7 +45,7 @@ if company_name:
     # دریافت داده‌های قیمتی شرکت
     if company_name in Mrepo.index:
         df = Moving(Mrepo, company_name, mnum=movnum)
-        st.wite(df)
+        st.write(df)
         # رسم نمودار با استفاده از Plotly
         fig = go.Figure()
         
