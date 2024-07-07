@@ -22,7 +22,7 @@ else:
 
 # توابع کمکی
 def Moving(dfkol , nemad, mnum):
-    dfkol = dfkol.T.ffill().bfill()
+    dfkol = dfkol.T.bfill()
     df = dfkol[nemad].to_frame()
     df[f"SMA{mnum}"] = df[nemad].rolling(mnum).mean()
     return df
