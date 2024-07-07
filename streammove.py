@@ -58,8 +58,8 @@ if company_name:
         top_diff_symbols = percentage_diff.sort_values(ascending=False).head(10)
         
         # نمایش پنجره با نمادهای با بیشترین اختلاف درصدی
-        st.subheader('نمادهایی با بیشترین اختلاف درصدی از میانگین:')
-        st.dataframe(top_diff_symbols)
+        #st.subheader('نمادهایی با بیشترین اختلاف درصدی از میانگین:')
+        #st.dataframe(top_diff_symbols)
         
         # رسم نمودار با استفاده از Plotly
         fig = go.Figure()
