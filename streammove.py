@@ -90,7 +90,7 @@ if company_name:
         )
 
         # نمایش نمودار با Plotly در Streamlit
-        st.show(df)
+        st.write(df)
         st.plotly_chart(fig, use_container_width=True)
     else:
         st.error(f'شرکت "{company_name}" در داده‌ها یافت نشد.')
